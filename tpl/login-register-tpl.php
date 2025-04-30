@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Login Register</title>
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="assets/style/style.css">
 
 </head>
 <body>
@@ -96,7 +96,7 @@
 
 </body>
 <!-- partial -->
-  <script  src="./script.js"></script>
+  <script  src="assets/js/script.js"></script>
 
 </body>
 </html>
