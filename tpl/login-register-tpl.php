@@ -30,7 +30,7 @@ $action = isset($_GET['action']) ? $_GET['action'] : 'login'; // پیش‌فرض
           <h2 class="title">Login</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="email" name="email" autocomplete="email" placeholder="email" required>
+            <input type="text" name="phone" autocomplete="phone" placeholder="phone" required>
           </div>
           <!-- <div class="input-field">
             <i class="fas fa-lock"></i>

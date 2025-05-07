@@ -56,7 +56,18 @@ function findTokenByHash(string $hash): object|bool
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
 # send token
-function sendTokenByMail(string $email, string|int $token): bool
+function sendTokenBySms(string $phone, string|int $token)
+{
+    global $api;
+    $receptor = "09218730741";
+    $token2 = "";
+    $token3 = "";
+    $template = "Test";
+    $type = "sms"; //sms | call
+    return $api->VerifyLookup($receptor, $token, $token2, $token3, $template, $type);
+}
+
+/* function sendTokenByMail(string $email, string|int $token): bool
 {
     global $mail;
     $mail->addAddress($email);
@@ -64,16 +75,25 @@ function sendTokenByMail(string $email, string|int $token): bool
     $mail->Body = 'Your Token is : ' . $token;
     $result =  $mail->send();
     return $result;
+} */
+
+function changeLoginSession(string $phone, ?string $session = null): bool
+{
+    global $pdo;
+    $sql = "UPDATE users SET session=:session WHERE phone=:phone";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':session' => $session, ':phone' => $phone]);
+    return $stmt->rowCount() ? true : false;
 }
 
-function changeLoginSession(string $email, string $session = null): bool
+/* function changeLoginSession(string $email, ?string $session = null): bool
 {
     global $pdo;
     $sql = "UPDATE users SET session=:session WHERE email=:email";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':session' => $session, ':email' => $email]);
     return $stmt->rowCount() ? true : false;
-}
+} */
 
 function deleteToenByHash(string $hash): bool
 {
